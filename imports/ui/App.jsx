@@ -21,6 +21,7 @@ class App extends React.Component {
     this.state = getDevice();
   }
 
+  // TODO: Debounce onResize
   onResize = () => { this.setState(getDevice); }
 
   componentDidMount() {
