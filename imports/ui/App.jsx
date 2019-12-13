@@ -1,4 +1,5 @@
 import React from 'react';
+import { _ } from 'meteor/underscore';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -19,10 +20,10 @@ class App extends React.Component {
     super(props);
 
     this.state = getDevice();
+    this.onResize = _.debounce(this.onResize.bind(this), 250);
   }
 
-  // TODO: Debounce onResize
-  onResize = () => { this.setState(getDevice); }
+  onResize() { this.setState(getDevice); }
 
   componentDidMount() {
     window.addEventListener('resize', this.onResize);
