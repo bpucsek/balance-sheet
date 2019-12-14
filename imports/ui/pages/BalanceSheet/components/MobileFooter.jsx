@@ -1,22 +1,25 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, fade, lighten } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
-  root: {},
+import { SummaryContainer } from '/imports/ui/pages/BalanceSheet/containers/LatestItemContainer';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    position: 'fixed',
+    bottom: 0,
+    width: '100%',
+    backgroundColor: theme.palette.grey[50],
+    borderTop: `1px solid ${lighten(fade(theme.palette.divider, 1), 0.88)}`, // Match MUI borders
+  },
 }));
 
 function MobileFooter() {
   const classes = useStyles();
 
-  Meteor.call('item.recalculateBalanceSheet', null, (err, res) => {
-    if (err) throw err;
-    console.log(res);
-  });
-
   return (
     <div className={classes.root}>
-
+      <SummaryContainer />
     </div>
   );
 }

@@ -9,8 +9,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import AddItemDialog from '/imports/ui/pages/BalanceSheet/components/AddItemDialog';
 
-const useStyles = makeStyles(() => ({
-  root: {},
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.grey[50],
+  },
   addButton: {},
   table: {},
   title: {

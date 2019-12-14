@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -9,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { queryItems } from '/imports/api/items/queries';
-import { formatBalance } from '/imports/api/items/utils';
+import { formatValue } from '/imports/api/items/utils';
 import EditItemDialog from '/imports/ui/pages/BalanceSheet/components/EditItemDialog';
 
 const useStyles = makeStyles(() => ({
@@ -22,8 +21,6 @@ const useStyles = makeStyles(() => ({
 function TableBody(props) {
   const classes = useStyles();
   const [selectedItem, selectItem] = useState(null);
-
-  // TODO: Show when loading
 
   return (
     <React.Fragment>
@@ -39,9 +36,15 @@ function TableBody(props) {
               selectItem(item);
             }}
           >
-            <TableCell>{_i18n(`enum.ItemTypeEnum.${item.type}`)}</TableCell>
-            <TableCell>{item.name}</TableCell>
-            <TableCell align={'right'}>{formatBalance(item.balance)}</TableCell>
+            <TableCell>
+              {_i18n(`enum.ItemTypeEnum.${item.type}`)}
+            </TableCell>
+            <TableCell>
+              {item.name}
+            </TableCell>
+            <TableCell align={'right'}>
+              {formatValue(item.balance)}
+            </TableCell>
           </TableRow>
         ))}
       </MuiTableBody>
@@ -69,6 +72,7 @@ const getData = () => {
 TableBody.propTypes = {
   classes: PropTypes.exact({
     root: PropTypes.string,
+    row: PropTypes.string,
   }),
   items: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,

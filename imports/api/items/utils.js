@@ -7,7 +7,7 @@ export const convertCentsToDollars = (v) => (v/100);
 
 export const isValidCurrencyAmount = (str) => (((str*100).toFixed(2)*1)%1 === 0);
 
-export const formatBalance = (cents) => {
+export const formatValue = (cents) => {
   let amount = (Math.abs(cents)/100).toFixed(2);
 
   if (cents < 0) {

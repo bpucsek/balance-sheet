@@ -73,7 +73,7 @@ function ManageItem({
         className={classes.balance}
         error={!!errors.balance}
         variant={'outlined'}
-        label={_i18n('component.AddItemDialog.field.balance')}
+        label={_i18n('model.Item.balance')}
         helperText={!!errors.balance && _i18n(`err.${errors.balance}`)}
         value={balance}
         onChange={(evt) => {

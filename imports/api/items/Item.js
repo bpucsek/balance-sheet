@@ -16,6 +16,7 @@ collection.deny({
 
 const schema = new SimpleSchema({
   _id: { type: String },
+  updated: { type: Date },
   type: { type: String, allowedValues: ITEM_TYPES },
   name: { type: String, min: 0, max: 50 },
   balance: { type: SimpleSchema.Integer },
