@@ -1,48 +1,56 @@
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 
-import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
 import MuiTableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { queryItems } from '/imports/api/items/queries';
+import { formatBalance } from '/imports/api/items/utils';
+import EditItemDialog from '/imports/ui/pages/BalanceSheet/components/EditItemDialog';
 
 const useStyles = makeStyles(() => ({
   root: {},
+  row: {
+    cursor: 'pointer',
+  },
 }));
-
-const handleRemoveItem = (itemId) => () => {
-  Meteor.call('item.remove', { itemId }, (err) => {
-    if (err) throw err;
-  });
-};
 
 function TableBody({ loading, items }) {
   const classes = useStyles();
+  const [selectedItem, selectItem] = useState(null);
 
   // TODO: Show when loading
 
   return (
-    <MuiTableBody className={classes.root}>
-      {items.map(({ _id, type, name, balance }) => (
-        <TableRow key={_id}>
-          <TableCell>{type}</TableCell>
-          <TableCell>{name}</TableCell>
-          <TableCell>{balance}</TableCell>
-          <TableCell>
-            <IconButton
-              onClick={handleRemoveItem(_id)}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </TableCell>
-        </TableRow>
-      ))}
-    </MuiTableBody>
+    <React.Fragment>
+      <MuiTableBody className={classes.root}>
+        {items.map((item) => (
+          <TableRow
+            className={classes.row}
+            hover
+            key={item._id}
+            onClick={() => {
+              selectItem(item);
+            }}
+          >
+            <TableCell>{_i18n(`enum.ItemTypeEnum.${item.type}`)}</TableCell>
+            <TableCell>{item.name}</TableCell>
+            <TableCell align={'right'}>{formatBalance(item.balance)}</TableCell>
+          </TableRow>
+        ))}
+      </MuiTableBody>
+      {selectedItem &&
+        <EditItemDialog
+          item={selectedItem}
+          onClose={() => {
+            selectItem(null);
+          }}
+        />
+      }
+    </React.Fragment>
   );
 }
 

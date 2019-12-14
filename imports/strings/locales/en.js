@@ -2,14 +2,18 @@
 /* eslint-disable max-len */
 
 export default {
-  "base.add": "Add",
   "base.cancel": "Cancel",
+  "base.save": "Save",
+  "component.AddItemDialog.commit": "Add Item",
   "component.AddItemDialog.title": "Add Item",
   "component.AddItemDialog.field.balance": "Balance ($)",
-  "component.AddItemDialog.err.INVALID_BALANCE": "Balance must be a number.",
-  "component.AddItemDialog.err.REQUIRED_FIELD": "Required field.",
-  "enum.ItemTypeEnum.Asset": "Asset",
-  "enum.ItemTypeEnum.Liability": "Liability",
+  "component.EditItemDialog.remove-item": "Delete Item",
+  "component.EditItemDialog.title": "Edit Item",
+  "enum.ItemTypeEnum.asset": "Asset",
+  "enum.ItemTypeEnum.liability": "Liability",
+  "err.invalid-balance": "Balance must not have partial cents.",
+  "err.invalid-number": "Balance must be a number.",
+  "err.required-field": "Required field.",
   "err.string-not-found": "String not found",
   "model.Item.balance": "Balance",
   "model.Item.name": "Name",

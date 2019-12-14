@@ -19,7 +19,7 @@ function TableHead() {
       <TableRow>
         <TableCell>{_i18n('model.Item.type')}</TableCell>
         <TableCell>{_i18n('model.Item.name')}</TableCell>
-        <TableCell>{_i18n('model.Item.balance')}</TableCell>
+        <TableCell align={'right'}>{_i18n('model.Item.balance')}</TableCell>
       </TableRow>
     </MuiTableHead>
   );

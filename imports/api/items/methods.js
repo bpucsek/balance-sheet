@@ -21,6 +21,30 @@ export const add = new ValidatedMethod({
   },
 });
 
+export const edit = new ValidatedMethod({
+  name: 'item.edit',
+  validate: new SimpleSchema({
+    itemId: { type: String },
+    type: { type: String, allowedValues: ITEM_TYPES },
+    name: { type: String, min: 0, max: 50 },
+    balance: { type: SimpleSchema.Integer },
+  }).validator(),
+  run({ itemId, type, name, balance }) {
+    Item.update({
+      _id: itemId,
+    }, {
+      $set: {
+        type,
+        name,
+        balance,
+      },
+    }, (err) => {
+      if (err) throw err;
+    });
+  },
+});
+
+
 export const remove = new ValidatedMethod({
   name: 'item.remove',
   validate: new SimpleSchema({
@@ -35,6 +59,7 @@ export const remove = new ValidatedMethod({
 
 const METHODS = _.pluck([
   add,
+  edit,
   remove,
 ], 'name');
 

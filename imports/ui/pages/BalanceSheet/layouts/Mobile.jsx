@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Mobile(props) {
   const classes = useStyles();
-  const [dialogOpen, toggleDialog] = useState(true);
+  const [dialogOpen, toggleDialog] = useState(false);
 
   return (
     <div className={classes.root}>
@@ -33,12 +33,11 @@ function Mobile(props) {
       >
         <AddIcon />
       </Fab>
-      <AddItemDialog
-        open={dialogOpen}
+      {dialogOpen && <AddItemDialog
         onClose={() => {
           toggleDialog(false);
         }}
-      />
+      />}
     </div>
   );
 }

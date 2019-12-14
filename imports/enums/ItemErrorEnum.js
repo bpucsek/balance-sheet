@@ -1,8 +1,9 @@
 import { enumerateValues } from '/imports/modules/utils';
 
 const map = {
-  Asset: 'asset',
-  Liability: 'liability',
+  InvalidNumber: 'invalid-number',
+  InvalidBalance: 'invalid-balance',
+  RequiredField: 'required-field',
 };
 
 const values = enumerateValues(map);
