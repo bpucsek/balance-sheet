@@ -11,7 +11,7 @@ const getDevice = () => {
   return {
     width: window.innerWidth,
     height: window.innerHeight,
-    isMobile: window.innerWidth < 900
+    isMobile: window.innerWidth < 900,
   };
 };
 
@@ -23,7 +23,9 @@ class App extends React.Component {
     this.onResize = _.debounce(this.onResize.bind(this), 250);
   }
 
-  onResize() { this.setState(getDevice); }
+  onResize() {
+    this.setState(getDevice);
+  }
 
   componentDidMount() {
     window.addEventListener('resize', this.onResize);
@@ -33,7 +35,7 @@ class App extends React.Component {
     window.removeEventListener('resize', this.onResize);
   }
 
-  render () {
+  render() {
     return (
       <MuiThemeProvider theme={theme}>
         <BalanceSheet

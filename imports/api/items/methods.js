@@ -12,30 +12,30 @@ export const add = new ValidatedMethod({
   validate: new SimpleSchema({
     type: { type: String, allowedValues: ITEM_TYPES },
     name: { type: String, min: 0, max: 50 },
-    balance: { type: SimpleSchema.Integer }
+    balance: { type: SimpleSchema.Integer },
   }).validator(),
   run({ type, name, balance }) {
     Item.insert({ type, name, balance }, (err) => {
       if (err) throw err;
     });
-  }
+  },
 });
 
 export const remove = new ValidatedMethod({
   name: 'item.remove',
   validate: new SimpleSchema({
-    itemId: { type: String }
+    itemId: { type: String },
   }).validator(),
   run({ itemId }) {
     Item.remove({ _id: itemId }, (err) => {
       if (err) throw err;
     });
-  }
+  },
 });
 
 const METHODS = _.pluck([
   add,
-  remove
+  remove,
 ], 'name');
 
 if (Meteor.isServer) {
@@ -45,6 +45,8 @@ if (Meteor.isServer) {
     },
 
     // Rate limit per connection ID
-    connectionId() { return true; },
+    connectionId() {
+      return true;
+    },
   }, 5, 5000);
 }

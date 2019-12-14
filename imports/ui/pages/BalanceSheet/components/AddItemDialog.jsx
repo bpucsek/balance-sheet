@@ -11,33 +11,35 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import { withStyles, fade } from '@material-ui/core/styles';
+import { makeStyles, fade } from '@material-ui/core/styles';
 
 import {
   map as ItemTypeEnum,
-  values as ITEM_TYPES
+  values as ITEM_TYPES,
 } from '/imports/enums/ItemTypeEnum';
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
   paper: {},
   title: {},
   typeButton: {},
   selected: {
     color: theme.palette.common.white,
-    backgroundColor: [fade(theme.palette.primary.main, 1.0), '!important']
+    // TODO: Remove !important by fixing specificity
+    backgroundColor: [fade(theme.palette.primary.main, 1.0), '!important'],
   },
   name: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
   },
   balance: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
   },
   actions: {},
-  cancelButton: {}
-});
+  cancelButton: {},
+}));
 
-function AddItemDialog({ classes, open, onClose }) {
+function AddItemDialog({ open, onClose }) {
+  const classes = useStyles();
   const [balance, setBalance] = useState('');
   const [errors, setErrors] = useState({});
   const [name, setText] = useState('');
@@ -52,7 +54,7 @@ function AddItemDialog({ classes, open, onClose }) {
 
     if (!balance.length) {
       errs.balance = 'REQUIRED_FIELD';
-    } else if (!isFinite(parseInt(balance))) {
+    } else if (!isFinite(parseInt(balance, 10))) {
       errs.balance = 'INVALID_BALANCE';
     }
 
@@ -69,7 +71,7 @@ function AddItemDialog({ classes, open, onClose }) {
     Meteor.call('item.add', {
       type,
       name,
-      balance: parseInt(balance)
+      balance: parseInt(balance, 10),
     }, (err) => {
       if (err) throw err;
       onClose();
@@ -99,7 +101,7 @@ function AddItemDialog({ classes, open, onClose }) {
           {ITEM_TYPES.map((v) => (
             <Button key={v}
               className={classNames(classes.typeButton, {
-                [classes.selected]: v === type
+                [classes.selected]: v === type,
               })}
               onClick={() => (setType(v))}
             >
@@ -116,7 +118,7 @@ function AddItemDialog({ classes, open, onClose }) {
           value={name}
           onChange={(evt) => {
             setErrors({ ...errors, name: null });
-            setText(evt.target.value)
+            setText(evt.target.value);
           }}
         />
         <TextField fullWidth
@@ -128,7 +130,7 @@ function AddItemDialog({ classes, open, onClose }) {
           value={balance}
           onChange={(evt) => {
             setErrors({ ...errors, balance: null });
-            setBalance(evt.target.value)
+            setBalance(evt.target.value);
           }}
         />
       </DialogContent>
@@ -156,9 +158,8 @@ function AddItemDialog({ classes, open, onClose }) {
 }
 
 AddItemDialog.propTypes = {
-  classes: PropTypes.object.isRequired,
   open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(AddItemDialog);
+export default AddItemDialog;

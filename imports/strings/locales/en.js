@@ -1,3 +1,6 @@
+/* eslint quotes: ["error", "double"]*/
+/* eslint-disable max-len */
+
 export default {
   "base.add": "Add",
   "base.cancel": "Cancel",
@@ -11,4 +14,4 @@ export default {
   "model.Item.balance": "Balance",
   "model.Item.name": "Name",
   "model.Item.type": "Type",
-}
+};

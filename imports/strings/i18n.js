@@ -7,6 +7,7 @@ export default function(stringId, args={}) {
     localization;
 
   switch(locale) {
+    case 'en':
     default:
       localization = en;
   }
