@@ -9,6 +9,8 @@ export default {
   "component.AddItemDialog.field.balance": "Balance ($)",
   "component.EditItemDialog.remove-item": "Delete Item",
   "component.EditItemDialog.title": "Edit Item",
+  "component.Header.button.add-item": "Add Item",
+  "component.Header.title": "Balance Sheet",
   "enum.ItemTypeEnum.asset": "Asset",
   "enum.ItemTypeEnum.liability": "Liability",
   "err.invalid-balance": "Balance must not have partial cents.",

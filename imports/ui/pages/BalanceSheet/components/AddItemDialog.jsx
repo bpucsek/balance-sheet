@@ -30,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AddItemDialog({ onClose }) {
+function AddItemDialog({
+  onClose
+}) {
   const classes = useStyles();
   const [balance, setBalance] = useState('');
   const [errors, setErrors] = useState({});

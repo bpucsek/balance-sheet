@@ -1,43 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import Fab from '@material-ui/core/Fab';
 import { makeStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
 
-import AddItemDialog from '/imports/ui/pages/BalanceSheet/components/AddItemDialog';
+import Header from '/imports/ui/pages/BalanceSheet/components/Header';
+import MobileFooter from '/imports/ui/pages/BalanceSheet/components/MobileFooter';
 import Table from '/imports/ui/pages/BalanceSheet/components/Table';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {},
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-    margin: theme.spacing(1),
+  header: {},
+  tableRoot: {
+    marginTop: '48px', // 48px for AppBar
+  },
+  tableHeadCell: {
+    top: '48px', // Height of AppBar
   },
 }));
 
 function Mobile(props) {
   const classes = useStyles();
-  const [dialogOpen, toggleDialog] = useState(false);
 
   return (
     <div className={classes.root}>
-      <Table { ...props } />
-      <Fab
-        className={classes.fab}
-        color={'secondary'}
-        onClick={() => {
-          toggleDialog(true);
+      <Header
+        classes={{ root: classes.header }}
+        AppBarProps={{
+          position: 'fixed',
         }}
-      >
-        <AddIcon />
-      </Fab>
-      {dialogOpen && <AddItemDialog
-        onClose={() => {
-          toggleDialog(false);
+      />
+      <Table { ...props }
+        classes={{
+          root: classes.tableRoot,
         }}
-      />}
+        TableHeadProps={{
+          classes: {
+            cell: classes.tableHeadCell,
+          },
+        }}
+      />
+      <MobileFooter />
     </div>
   );
 }

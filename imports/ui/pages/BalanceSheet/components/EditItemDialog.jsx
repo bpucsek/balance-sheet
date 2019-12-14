@@ -36,7 +36,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function EditItemDialog({ item, onClose }) {
+function EditItemDialog({
+  item,
+  onClose
+}) {
   const classes = useStyles();
   const [balance, setBalance] = useState(convertCentsToDollars(item.balance).toString());
   const [errors, setErrors] = useState({});

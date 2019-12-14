@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -18,7 +19,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function TableBody({ loading, items }) {
+function TableBody(props) {
   const classes = useStyles();
   const [selectedItem, selectItem] = useState(null);
 
@@ -26,8 +27,10 @@ function TableBody({ loading, items }) {
 
   return (
     <React.Fragment>
-      <MuiTableBody className={classes.root}>
-        {items.map((item) => (
+      <MuiTableBody
+        className={classes.root}
+      >
+        {props.items.map((item) => (
           <TableRow
             className={classes.row}
             hover
@@ -64,8 +67,11 @@ const getData = () => {
 };
 
 TableBody.propTypes = {
-  loading: PropTypes.bool.isRequired,
+  classes: PropTypes.exact({
+    root: PropTypes.string,
+  }),
   items: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default withTracker(getData)(TableBody);
