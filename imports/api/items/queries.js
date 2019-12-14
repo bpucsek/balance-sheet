@@ -4,11 +4,15 @@ const PUBLIC_FIELDS = {
   type: 1,
   name: 1,
   balance: 1,
+  created: 1,
   updated: 1,
 };
 
 export const queryItems = () => {
-  return Item.find({}, { fields: PUBLIC_FIELDS });
+  return Item.find({}, {
+    fields: PUBLIC_FIELDS,
+    sort: { created: -1 },
+  });
 };
 
 export const queryLatestItem = () => {

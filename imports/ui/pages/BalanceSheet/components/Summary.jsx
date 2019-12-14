@@ -27,12 +27,14 @@ const styles = () => ({
   valueCell: {},
 });
 
-function shouldRefreshTotals(a, b) {
-  return !(
-    !!a === !!b &&
-    a._id === b._id &&
-    a.type === b.type &&
-    a.balance === b.balance
+function shouldRefreshTotals(prev, curr) {
+  return (
+    !!curr && (
+      !prev ||
+      prev._id !== curr._id ||
+      prev.type !== curr.type ||
+      prev.balance !== curr.balance
+    )
   );
 }
 

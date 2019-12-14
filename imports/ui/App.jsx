@@ -5,7 +5,15 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import BalanceSheet from '/imports/ui/pages/BalanceSheet';
 
-const theme = createMuiTheme();
+const theme = createMuiTheme({
+  overrides: {
+    MuiTableCell: {
+      root: {
+        padding: '16px 12px',
+      },
+    },
+  },
+});
 
 const getDevice = () => {
   return {

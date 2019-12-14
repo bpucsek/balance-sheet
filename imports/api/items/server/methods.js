@@ -10,8 +10,8 @@ import {
   values as ITEM_TYPES,
 } from '/imports/enums/ItemTypeEnum';
 
-const aggregateByType = (type) => (
-  Item.rawCollection().aggregate([
+const aggregateByType = async (type) => {
+  let records = await Item.rawCollection().aggregate([
     {
       $match: {
         type,
@@ -22,17 +22,19 @@ const aggregateByType = (type) => (
         total: { $sum: '$balance' },
       },
     },
-  ]).toArray()
-);
+  ]).toArray();
+
+  if (!records.length) return 0;
+
+  return records[0].total;
+};
 
 export const recalculateBalanceSheet = new ValidatedMethod({
   name: 'item.recalculateBalanceSheet',
   validate: null,
   async run() {
-    const assetAggregation = await aggregateByType(ItemTypeEnum.Asset),
-      assetTotal = assetAggregation[0].total,
-      liabilityAggregation = await aggregateByType(ItemTypeEnum.Liability),
-      liabilityTotal = liabilityAggregation[0].total;
+    const assetTotal = await aggregateByType(ItemTypeEnum.Asset),
+      liabilityTotal = await aggregateByType(ItemTypeEnum.Liability);
 
     return {
       assets: assetTotal,
@@ -46,7 +48,7 @@ export const add = new ValidatedMethod({
   name: 'item.add',
   validate: new SimpleSchema({
     type: { type: String, allowedValues: ITEM_TYPES },
-    name: { type: String, min: 0, max: 50 },
+    name: { type: String },
     balance: { type: SimpleSchema.Integer },
   }).validator(),
   run({ type, name, balance }) {
@@ -54,6 +56,7 @@ export const add = new ValidatedMethod({
       type,
       name,
       balance,
+      created: new Date(),
       updated: new Date(),
     }, (err) => {
       if (err) throw err;
@@ -66,7 +69,7 @@ export const edit = new ValidatedMethod({
   validate: new SimpleSchema({
     itemId: { type: String },
     type: { type: String, allowedValues: ITEM_TYPES },
-    name: { type: String, min: 0, max: 50 },
+    name: { type: String },
     balance: { type: SimpleSchema.Integer },
   }).validator(),
   run({ itemId, type, name, balance }) {
