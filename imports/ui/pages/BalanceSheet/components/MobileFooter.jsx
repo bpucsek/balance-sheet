@@ -9,8 +9,15 @@ const useStyles = makeStyles(() => ({
 function MobileFooter() {
   const classes = useStyles();
 
+  Meteor.call('item.recalculateBalanceSheet', null, (err, res) => {
+    if (err) throw err;
+    console.log(res);
+  });
+
   return (
-    <div className={classes.root} />
+    <div className={classes.root}>
+
+    </div>
   );
 }
 
