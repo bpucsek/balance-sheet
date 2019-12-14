@@ -2,8 +2,8 @@ import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import compose from 'recompose/compose';
 
+import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
 import Table from '@material-ui/core/Table';
 import MuiTableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -38,7 +38,7 @@ function TableBody({ classes, loading, items }) {
               <IconButton
                 onClick={handleRemoveItem(_id)}
               >
-                <Icon>{'clear'}</Icon>
+                <DeleteIcon />
               </IconButton>
             </TableCell>
           </TableRow>
