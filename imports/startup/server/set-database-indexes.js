@@ -6,7 +6,7 @@ Meteor.startup(() => {
   /**
     The list is sorted on create time descending so new items always show at the top.
   */
-  Item._ensureIndex({ created: 1 });
+  Item._ensureIndex({ deleted: 1, created: -1 });
 
   /**
     The mechanism I'm using to communicate to the UI that it needs to ask for an updated
@@ -14,7 +14,7 @@ Meteor.startup(() => {
 
     Then I can just diff that item on the UI when it changes and if necessary ask the server for new values.
   */
-  Item._ensureIndex({ updated: 1 });
+  Item._ensureIndex({ updated: -1 });
 
   /**
     Other considerations:

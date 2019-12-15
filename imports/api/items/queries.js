@@ -6,10 +6,13 @@ const PUBLIC_FIELDS = {
   balance: 1,
   created: 1,
   updated: 1,
+  deleted: 1,
 };
 
 export const queryItems = () => {
-  return Item.find({}, {
+  return Item.find({
+    deleted: { $exists: false },
+  }, {
     fields: PUBLIC_FIELDS,
     sort: { created: -1 },
   });

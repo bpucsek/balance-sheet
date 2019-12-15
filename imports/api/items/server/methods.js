@@ -14,6 +14,7 @@ const aggregateByType = async (type) => {
   let records = await Item.rawCollection().aggregate([
     {
       $match: {
+        deleted: { $exists: false },
         type,
       },
     }, {
@@ -95,7 +96,15 @@ export const remove = new ValidatedMethod({
     itemId: { type: String },
   }).validator(),
   run({ itemId }) {
-    Item.remove({ _id: itemId }, (err) => {
+    // Deleted items need to report to the UI in order to trigger a balance sheet refresh.
+    Item.update({
+      _id: itemId,
+    }, {
+      $set: {
+        updated: new Date(),
+        deleted: true,
+      },
+    }, (err) => {
       if (err) throw err;
     });
   },

@@ -21,6 +21,7 @@ const schema = new SimpleSchema({
   type: { type: String, allowedValues: ITEM_TYPES },
   name: { type: String },
   balance: { type: SimpleSchema.Integer },
+  deleted: { type: Boolean, optional: true },
 });
 
 collection.attachSchema(schema);
