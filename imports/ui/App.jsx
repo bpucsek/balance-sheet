@@ -1,6 +1,7 @@
 import React from 'react';
 import { _ } from 'meteor/underscore';
 
+import { grey } from '@material-ui/core/colors';
 import { MuiThemeProvider, createMuiTheme, fade, lighten } from '@material-ui/core/styles';
 
 import BalanceSheet from '/imports/ui/pages/BalanceSheet';
@@ -40,6 +41,9 @@ const theme = createMuiTheme({
     MuiTableCell: {
       root: {
         padding: '16px 12px',
+      },
+      stickyHeader: {
+        backgroundColor: grey[100],
       },
     },
   },

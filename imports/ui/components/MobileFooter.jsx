@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     bottom: 0,
     width: '100%',
-    backgroundColor: theme.palette.grey[50],
+    backgroundColor: theme.palette.grey[100],
     borderTop: `1px solid ${theme.palette.border}`,
   },
 }));
