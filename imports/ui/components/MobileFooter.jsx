@@ -2,7 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { SummaryContainer } from '/imports/ui/pages/BalanceSheet/containers/LatestItemContainer';
+import { SummaryContainer } from '/imports/ui/containers/LatestItemContainer';
 
 const useStyles = makeStyles((theme) => ({
   root: {

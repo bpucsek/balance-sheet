@@ -14,16 +14,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   validateItem,
   convertBalanceToCents,
-  convertCentsToDollars,
 } from '/imports/api/items/utils';
-import ManageItem from '/imports/ui/pages/BalanceSheet/components/ManageItem';
+import { map as ItemTypeEnum } from '/imports/enums/ItemTypeEnum';
+import ManageItem from '/imports/ui/components/ManageItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
   paper: {},
-  content: {
-    textAlign: 'center',
-  },
   title: {},
   actions: {},
   closeButton: {
@@ -31,37 +28,25 @@ const useStyles = makeStyles((theme) => ({
     top: theme.spacing(0.5),
     right: theme.spacing(0.5),
   },
-  removeButton: {
-    margin: theme.spacing(2, 0),
-  },
 }));
 
-function EditItemDialog({
-  item,
-  onClose
+function AddItemDialog({
+  onClose,
 }) {
   const classes = useStyles();
-  const [balance, setBalance] = useState(convertCentsToDollars(item.balance).toString());
+  const [balance, setBalance] = useState('');
   const [errors, setErrors] = useState({});
-  const [name, setName] = useState(item.name);
-  const [type, setType] = useState(item.type);
+  const [name, setName] = useState('');
+  const [type, setType] = useState(ItemTypeEnum.Asset);
 
-  function handleRemoveItem() {
-    Meteor.call('item.remove', { itemId: item._id }, (err) => {
-      if (err) throw err;
-      onClose();
-    });
-  }
-
-  function handleEditItem() {
+  function handleCreate() {
     let errs = validateItem({ name, balance });
 
     if (Object.keys(errs).length) {
       return setErrors(errs);
     }
 
-    Meteor.call('item.edit', {
-      itemId: item._id,
+    Meteor.call('item.add', {
       type,
       name,
       balance: convertBalanceToCents(balance),
@@ -73,10 +58,10 @@ function EditItemDialog({
 
   return (
     <Dialog
-      className={classes.root}
       classes={{ paper: classes.paper }}
-      onBackdropClick={onClose}
+      className={classes.root}
       maxWidth={'xs'}
+      onBackdropClick={onClose}
       open
     >
       <DialogTitle
@@ -90,15 +75,12 @@ function EditItemDialog({
           <ClearIcon />
         </IconButton>
         <Typography
-          color={'inherit'}
           variant={'h6'}
         >
-          {_i18n('component.EditItemDialog.title')}
+          {_i18n('component.AddItemDialog.title')}
         </Typography>
       </DialogTitle>
-      <DialogContent
-        className={classes.content}
-      >
+      <DialogContent>
         <ManageItem
           balance={balance}
           errors={errors}
@@ -109,14 +91,6 @@ function EditItemDialog({
           setType={setType}
           type={type}
         />
-        <Button
-          className={classes.removeButton}
-          color={'secondary'}
-          onClick={handleRemoveItem}
-          variant={'text'}
-        >
-          {_i18n('component.EditItemDialog.remove-item')}
-        </Button>
       </DialogContent>
       <DialogActions
         className={classes.actions}
@@ -124,7 +98,7 @@ function EditItemDialog({
         <Button
           className={classes.createButton}
           color={'secondary'}
-          onClick={handleEditItem}
+          onClick={handleCreate}
           variant={'contained'}
         >
           {_i18n('base.save')}
@@ -134,8 +108,8 @@ function EditItemDialog({
   );
 }
 
-EditItemDialog.propTypes = {
+AddItemDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default EditItemDialog;
+export default AddItemDialog;

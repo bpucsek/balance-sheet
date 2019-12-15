@@ -6,8 +6,8 @@ import MuiTable from '@material-ui/core/Table';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import TableBody from '/imports/ui/pages/BalanceSheet/components/TableBody';
-import TableHead from '/imports/ui/pages/BalanceSheet/components/TableHead';
+import TableBody from '/imports/ui/components/TableBody';
+import TableHead from '/imports/ui/components/TableHead';
 
 const useStyles = makeStyles(() => ({
   root: {

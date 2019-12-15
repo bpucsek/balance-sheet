@@ -1,7 +1,7 @@
 import { withTracker } from 'meteor/react-meteor-data';
 
 import { queryLatestItem } from '/imports/api/items/queries';
-import Summary from '/imports/ui/pages/BalanceSheet/components/Summary';
+import Summary from '/imports/ui/components/Summary';
 
 const getData = () => {
   const handle = Meteor.subscribe('items.latest');

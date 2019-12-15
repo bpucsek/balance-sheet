@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import Header from '/imports/ui/pages/BalanceSheet/components/Header';
-import MobileFooter from '/imports/ui/pages/BalanceSheet/components/MobileFooter';
-import Table from '/imports/ui/pages/BalanceSheet/components/Table';
+import Header from '/imports/ui/components/Header';
+import MobileFooter from '/imports/ui/components/MobileFooter';
+import Table from '/imports/ui/components/Table';
 
 const useStyles = makeStyles(() => ({
   root: {},

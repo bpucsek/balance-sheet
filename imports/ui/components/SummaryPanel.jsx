@@ -4,7 +4,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { SummaryContainer } from '/imports/ui/pages/BalanceSheet/containers/LatestItemContainer';
+import { SummaryContainer } from '/imports/ui/containers/LatestItemContainer';
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -12,8 +12,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { queryItems } from '/imports/api/items/queries';
 import { formatValue } from '/imports/api/items/utils';
-import AddItemDialog from '/imports/ui/pages/BalanceSheet/components/AddItemDialog';
-import EditItemDialog from '/imports/ui/pages/BalanceSheet/components/EditItemDialog';
+import AddItemDialog from '/imports/ui/components/AddItemDialog';
+import EditItemDialog from '/imports/ui/components/EditItemDialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {},

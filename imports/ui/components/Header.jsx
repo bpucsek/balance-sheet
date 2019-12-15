@@ -10,8 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import HelpIcon from '@material-ui/icons/HelpOutline';
 
-import AddItemDialog from '/imports/ui/pages/BalanceSheet/components/AddItemDialog';
-import HelpDialog from '/imports/ui/pages/BalanceSheet/components/HelpDialog';
+import AddItemDialog from '/imports/ui/components/AddItemDialog';
+import HelpDialog from '/imports/ui/components/HelpDialog';
 
 const useStyles = makeStyles(() => ({
   root: {},
