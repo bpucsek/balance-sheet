@@ -12,14 +12,14 @@ import { values as ITEM_TYPES } from '/imports/enums/ItemTypeEnum';
 
 import { formatValue } from '/imports/api/items/utils';
 
-const styles = () => ({
+const styles = (theme) => ({
   root: {},
   column: {
     width: '50%',
   },
   cell: {
     borderBottom: 'none',
-    width: '150px',
+    padding: theme.spacing(1, 1.5),
   },
   labelCell: {
     fontWeight: 600,
@@ -102,9 +102,7 @@ class Summary extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Table
-        size={'small'}
-      >
+      <Table>
         <colgroup>
           <col className={classes.column} />
           <col className={classes.column} />
