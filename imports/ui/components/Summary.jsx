@@ -31,6 +31,7 @@ function shouldRefreshTotals(prev, curr, initialized) {
     !!curr && (
       !initialized ||
       !prev ||
+      prev.deleted !== curr.deleted ||
       prev._id !== curr._id ||
       prev.type !== curr.type ||
       prev.balance !== curr.balance
