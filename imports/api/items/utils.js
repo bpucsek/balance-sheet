@@ -30,6 +30,10 @@ export const validateItem = ({ name, balance }) => {
     errs.balance = ItemErrorEnum.RequiredField;
   } else if (!isFinite(balanceNumber)) {
     errs.balance = ItemErrorEnum.InvalidNumber;
+  } else if (balanceNumber < -1e+20) {
+    errs.balance = ItemErrorEnum.BalanceTooLow;
+  } else if (balanceNumber > 1e+20) {
+    errs.balance = ItemErrorEnum.BalanceTooHigh;
   } else if (!isValidCurrencyAmount(balance)) {
     errs.balance = ItemErrorEnum.InvalidBalance;
   }

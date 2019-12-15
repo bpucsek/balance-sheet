@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -8,6 +9,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   root: {},
+  type: {
+    width: '80px',
+  },
+  name: {},
+  balance: {
+    width: '80px',
+  },
 }));
 
 function TableHead(props) {
@@ -17,17 +25,17 @@ function TableHead(props) {
     <MuiTableHead className={classes.root}>
       <TableRow>
         <TableCell
-          className={props.classes.cell}
+          className={classNames(classes.type, props.classes.cell)}
         >
           {_i18n('model.Item.type')}
         </TableCell>
         <TableCell
-          className={props.classes.cell}
+          className={classNames(classes.name, props.classes.cell)}
         >
           {_i18n('model.Item.name')}
         </TableCell>
         <TableCell
-          className={props.classes.cell}
+          className={classNames(classes.balance, props.classes.cell)}
           align={'right'}
         >
           {_i18n('model.Item.balance')}

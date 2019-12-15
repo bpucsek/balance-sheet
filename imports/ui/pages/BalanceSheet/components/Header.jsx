@@ -4,11 +4,14 @@ import PropTypes from 'prop-types';
 
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import HelpIcon from '@material-ui/icons/HelpOutline';
 
 import AddItemDialog from '/imports/ui/pages/BalanceSheet/components/AddItemDialog';
+import HelpDialog from '/imports/ui/pages/BalanceSheet/components/HelpDialog';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -21,7 +24,8 @@ const useStyles = makeStyles(() => ({
 
 function Header(props) {
   const classes = useStyles();
-  const [dialogOpen, toggleDialog] = useState(false);
+  const [addItemOpen, toggleAddItemDialog] = useState(false);
+  const [helpOpen, toggleHelpDialog] = useState(false);
 
   return (
     <AppBar
@@ -44,17 +48,34 @@ function Header(props) {
           color={'secondary'}
           variant={'contained'}
           onClick={() => {
-            toggleDialog(true);
+            toggleAddItemDialog(true);
           }}
         >
           {_i18n('component.Header.button.add-item')}
         </Button>
+        <IconButton
+          color={'inherit'}
+          onClick={() => {
+            toggleHelpDialog(true);
+          }}
+        >
+          <HelpIcon />
+        </IconButton>
       </Toolbar>
-      {dialogOpen && <AddItemDialog
-        onClose={() => {
-          toggleDialog(false);
-        }}
-      />}
+      {addItemOpen &&
+        <AddItemDialog
+          onClose={() => {
+            toggleAddItemDialog(false);
+          }}
+        />
+      }
+      {helpOpen &&
+        <HelpDialog
+          onClose={() => {
+            toggleHelpDialog(false);
+          }}
+        />
+      }
     </AppBar>
   );
 }

@@ -37,6 +37,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 300,
     paddingBottom: theme.spacing(1),
   },
+  balance: {
+    maxWidth: '120px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
 }));
 
 // Hack: Get around warning about putting divs inside of a <table>
@@ -108,7 +114,10 @@ function TableBody(props) {
             <TableCell>
               {item.name}
             </TableCell>
-            <TableCell align={'right'}>
+            <TableCell
+              align={'right'}
+              className={classes.balance}
+            >
               {formatValue(item.balance)}
             </TableCell>
           </TableRow>

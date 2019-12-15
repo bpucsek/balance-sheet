@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     marginRight: theme.spacing(4),
+    marginBottom: theme.spacing(10),
     flexGrow: 1,
   },
   table: {

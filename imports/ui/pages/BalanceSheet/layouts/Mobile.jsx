@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
   header: {},
   table: {
     marginTop: '48px', // 48px for AppBar
+    marginBottom: '96px',
   },
   tableHeadCell: {
     top: '48px', // Height of AppBar
