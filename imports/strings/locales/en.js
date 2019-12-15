@@ -2,17 +2,17 @@
 /* eslint-disable max-len */
 
 export default {
-  "base.cancel": "Cancel",
   "base.save": "Save",
-  "component.AddItemDialog.commit": "Add Item",
   "component.AddItemDialog.title": "Add Item",
   "component.EditItemDialog.remove-item": "Delete Item",
   "component.EditItemDialog.title": "Edit Item",
   "component.Header.button.add-item": "Add Item",
   "component.Header.title": "Balance Sheet",
-  "component.Summary.assets": "Assets",
-  "component.Summary.liabilities": "Liabilities",
-  "component.Summary.netWorth": "Net Worth",
+  "component.Summary.assets": "Assets ($)",
+  "component.Summary.liabilities": "Liabilities ($)",
+  "component.Summary.netWorth": "Net Worth ($)",
+  "component.TableBody.button.add-item": "Add Item",
+  "component.TableBody.empty": "No items found.",
   "enum.ItemTypeEnum.asset": "Asset",
   "enum.ItemTypeEnum.liability": "Liability",
   "err.invalid-balance": "Balance must not have partial cents.",

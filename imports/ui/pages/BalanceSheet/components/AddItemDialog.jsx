@@ -60,7 +60,7 @@ function AddItemDialog({
     <Dialog
       classes={{ paper: classes.paper }}
       className={classes.root}
-      maxWidth={'sm'}
+      maxWidth={'xs'}
       onBackdropClick={onClose}
       open
     >
@@ -101,7 +101,7 @@ function AddItemDialog({
           onClick={handleCreate}
           variant={'contained'}
         >
-          {_i18n('component.AddItemDialog.commit')}
+          {_i18n('base.save')}
         </Button>
       </DialogActions>
     </Dialog>

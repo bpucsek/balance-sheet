@@ -27,9 +27,10 @@ const styles = () => ({
   valueCell: {},
 });
 
-function shouldRefreshTotals(prev, curr) {
+function shouldRefreshTotals(prev, curr, initialized) {
   return (
     !!curr && (
+      !initialized ||
       !prev ||
       prev._id !== curr._id ||
       prev.type !== curr.type ||
@@ -42,7 +43,6 @@ function Row({ classes, label, value }) {
   return (
     <TableRow className={classes.row}>
       <TableCell
-        align={'right'}
         className={classNames(classes.cell, classes.labelCell)}
       >
         {label}
@@ -62,6 +62,7 @@ class Summary extends React.Component {
     super(props);
 
     this.state = {
+      initialized: false,
       assets: null,
       liabilities: null,
       netWorth: null,
@@ -69,11 +70,16 @@ class Summary extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (shouldRefreshTotals(prevProps.latestItem, this.props.latestItem)) {
+    if (shouldRefreshTotals(
+      prevProps.latestItem,
+      this.props.latestItem,
+      this.state.initialized,
+    )) {
       Meteor.call('item.recalculateBalanceSheet', null, (err, res) => {
         if (err) throw err;
 
         this.setState(() => ({
+          initialized: true,
           assets: res.assets,
           liabilities: res.liabilities,
           netWorth: res.netWorth,

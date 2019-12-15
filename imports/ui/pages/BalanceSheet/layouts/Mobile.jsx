@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -9,7 +9,7 @@ import Table from '/imports/ui/pages/BalanceSheet/components/Table';
 const useStyles = makeStyles(() => ({
   root: {},
   header: {},
-  tableRoot: {
+  table: {
     marginTop: '48px', // 48px for AppBar
   },
   tableHeadCell: {
@@ -20,17 +20,18 @@ const useStyles = makeStyles(() => ({
 function Mobile(props) {
   const classes = useStyles();
 
+  useEffect(() => {
+    document.body.style.backgroundColor = '#fff';
+  });
+
   return (
     <div className={classes.root}>
       <Header
         classes={{ root: classes.header }}
-        AppBarProps={{
-          position: 'fixed',
-        }}
       />
       <Table { ...props }
         classes={{
-          root: classes.tableRoot,
+          root: classes.table,
         }}
         TableHeadProps={{
           classes: {

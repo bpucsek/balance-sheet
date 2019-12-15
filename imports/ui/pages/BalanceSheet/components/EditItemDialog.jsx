@@ -76,7 +76,7 @@ function EditItemDialog({
       className={classes.root}
       classes={{ paper: classes.paper }}
       onBackdropClick={onClose}
-      maxWidth={'sm'}
+      maxWidth={'xs'}
       open
     >
       <DialogTitle

@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,33 +10,29 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import AddItemDialog from '/imports/ui/pages/BalanceSheet/components/AddItemDialog';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.grey[50],
-  },
-  addButton: {},
+const useStyles = makeStyles(() => ({
+  root: {},
+  toolbar: {},
   table: {},
   title: {
     flexGrow: 1,
-    fontWeight: 600,
   },
 }));
 
-function Header({
-  AppBarProps
-}) {
+function Header(props) {
   const classes = useStyles();
   const [dialogOpen, toggleDialog] = useState(false);
 
   return (
     <AppBar
-      className={classes.root}
-      color={'inherit'}
+      className={classNames(classes.root, props.classes.root)}
+      color={'primary'}
+      position={'fixed'}
       elevation={0}
-      { ...AppBarProps }
     >
       <Toolbar
         variant={'dense'}
+        className={classNames(classes.toolbar, props.classes.toolbar)}
       >
         <Typography
           className={classes.title}
@@ -44,9 +41,8 @@ function Header({
           {_i18n('component.Header.title')}
         </Typography>
         <Button
-          className={classes.addButton}
           color={'secondary'}
-          variant={'outlined'}
+          variant={'contained'}
           onClick={() => {
             toggleDialog(true);
           }}
@@ -64,12 +60,9 @@ function Header({
 }
 
 Header.propTypes = {
-  AppBarProps: PropTypes.exact({
-    children: PropTypes.node,
-    classes: PropTypes.object,
-    className: PropTypes.string,
-    color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
-    position: PropTypes.oneOf(['absolute', 'fixed', 'relative', 'static', 'sticky']),
+  classes: PropTypes.exact({
+    root: PropTypes.string,
+    toolbar: PropTypes.string,
   }),
 };
 

@@ -22,10 +22,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: [fade(theme.palette.primary.main, 1.0), '!important'],
   },
   name: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(4.5),
   },
   balance: {
     marginTop: theme.spacing(2),
+  },
+  spacing: {
+    marginBottom: theme.spacing(2.5),
   },
 }));
 
@@ -58,7 +61,9 @@ function ManageItem({
         ))}
       </ButtonGroup>
       <TextField fullWidth
-        className={classes.name}
+        className={classNames(classes.name, {
+          [classes.spacing]: !errors.name,
+        })}
         error={!!errors.name}
         variant={'outlined'}
         label={_i18n('model.Item.name')}
@@ -70,7 +75,9 @@ function ManageItem({
         }}
       />
       <TextField fullWidth
-        className={classes.balance}
+        className={classNames(classes.balance, {
+          [classes.spacing]: !errors.balance,
+        })}
         error={!!errors.balance}
         variant={'outlined'}
         label={_i18n('model.Item.balance')}

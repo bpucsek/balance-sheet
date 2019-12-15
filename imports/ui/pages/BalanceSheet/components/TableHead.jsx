@@ -6,16 +6,12 @@ import MuiTableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.common.white,
-  },
+const useStyles = makeStyles(() => ({
+  root: {},
 }));
 
 function TableHead(props) {
   const classes = useStyles();
-
-  // TODO: Show when loading
 
   return (
     <MuiTableHead className={classes.root}>

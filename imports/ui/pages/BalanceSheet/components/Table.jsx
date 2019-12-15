@@ -10,7 +10,9 @@ import TableBody from '/imports/ui/pages/BalanceSheet/components/TableBody';
 import TableHead from '/imports/ui/pages/BalanceSheet/components/TableHead';
 
 const useStyles = makeStyles(() => ({
-  root: {},
+  root: {
+    position: 'relative',
+  },
   head: {},
   body: {},
 }));
