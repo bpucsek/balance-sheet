@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     width: '300px',
     flexShrink: 0,
     borderRadius: '4px',
+    backgroundColor: theme.palette.common.white,
   },
 }));
 

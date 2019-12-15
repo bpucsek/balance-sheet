@@ -19,10 +19,6 @@ import { map as ItemTypeEnum } from '/imports/enums/ItemTypeEnum';
 import ManageItem from '/imports/ui/components/ManageItem';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
-  paper: {},
-  title: {},
-  actions: {},
   closeButton: {
     position: 'absolute',
     top: theme.spacing(0.5),
@@ -58,16 +54,11 @@ function AddItemDialog({
 
   return (
     <Dialog
-      classes={{ paper: classes.paper }}
-      className={classes.root}
       maxWidth={'xs'}
       onBackdropClick={onClose}
       open
     >
-      <DialogTitle
-        className={classes.title}
-        disableTypography
-      >
+      <DialogTitle disableTypography>
         <IconButton
           className={classes.closeButton}
           onClick={onClose}
@@ -92,11 +83,8 @@ function AddItemDialog({
           type={type}
         />
       </DialogContent>
-      <DialogActions
-        className={classes.actions}
-      >
+      <DialogActions>
         <Button
-          className={classes.createButton}
           color={'secondary'}
           onClick={handleCreate}
           variant={'contained'}

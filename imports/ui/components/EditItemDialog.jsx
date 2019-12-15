@@ -19,13 +19,9 @@ import {
 import ManageItem from '/imports/ui/components/ManageItem';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
-  paper: {},
   content: {
     textAlign: 'center',
   },
-  title: {},
-  actions: {},
   closeButton: {
     position: 'absolute',
     top: theme.spacing(0.5),
@@ -38,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 function EditItemDialog({
   item,
-  onClose
+  onClose,
 }) {
   const classes = useStyles();
   const [balance, setBalance] = useState(convertCentsToDollars(item.balance).toString());
@@ -73,14 +69,11 @@ function EditItemDialog({
 
   return (
     <Dialog
-      className={classes.root}
-      classes={{ paper: classes.paper }}
       onBackdropClick={onClose}
       maxWidth={'xs'}
       open
     >
       <DialogTitle
-        className={classes.title}
         disableTypography
       >
         <IconButton
@@ -118,11 +111,8 @@ function EditItemDialog({
           {_i18n('component.EditItemDialog.remove-item')}
         </Button>
       </DialogContent>
-      <DialogActions
-        className={classes.actions}
-      >
+      <DialogActions>
         <Button
-          className={classes.createButton}
           color={'secondary'}
           onClick={handleEditItem}
           variant={'contained'}
@@ -135,6 +125,12 @@ function EditItemDialog({
 }
 
 EditItemDialog.propTypes = {
+  item: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    balance: PropTypes.number.isRequired,
+  }),
   onClose: PropTypes.func.isRequired,
 };
 

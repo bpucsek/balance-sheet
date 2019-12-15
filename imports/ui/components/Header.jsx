@@ -14,9 +14,8 @@ import AddItemDialog from '/imports/ui/components/AddItemDialog';
 import HelpDialog from '/imports/ui/components/HelpDialog';
 
 const useStyles = makeStyles(() => ({
-  root: {},
+  root: {}, // Note: Empty styles do not get turned into CSS rules.
   toolbar: {},
-  table: {},
   title: {
     flexGrow: 1,
   },

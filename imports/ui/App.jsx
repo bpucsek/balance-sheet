@@ -47,9 +47,7 @@ const theme = createMuiTheme({
 
 const getDevice = () => {
   return {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    isMobile: window.innerWidth < 900,
+    size: (window.innerWidth < 900) ? 'mobile' : 'desktop',
   };
 };
 
@@ -77,7 +75,7 @@ class App extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>
         <BalanceSheet
-          device={{ ...this.state }}
+          size={this.state.size}
         />
       </MuiThemeProvider>
     );

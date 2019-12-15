@@ -12,9 +12,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
-  paper: {},
-  title: {},
   body: {
     whiteSpace: 'pre-wrap',
   },
@@ -32,14 +29,11 @@ function HelpDialog({
 
   return (
     <Dialog
-      classes={{ paper: classes.paper }}
-      className={classes.root}
       maxWidth={'sm'}
       onBackdropClick={onClose}
       open
     >
       <DialogTitle
-        className={classes.title}
         disableTypography
       >
         <IconButton

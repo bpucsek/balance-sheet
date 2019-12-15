@@ -15,8 +15,7 @@ import {
 } from '/imports/enums/ItemTypeEnum';
 
 const useStyles = makeStyles((theme) => ({
-  typeButton: {},
-  selected: {
+  selectedType: {
     color: theme.palette.common.white,
     // TODO: Remove !important by fixing specificity
     backgroundColor: [fade(theme.palette.primary.main, 1.0), '!important'],
@@ -51,8 +50,8 @@ function ManageItem({
       >
         {ITEM_TYPES.map((v) => (
           <Button key={v}
-            className={classNames(classes.typeButton, {
-              [classes.selected]: v === type,
+            className={classNames({
+              [classes.selectedType]: v === type,
             })}
             onClick={() => (setType(v))}
           >

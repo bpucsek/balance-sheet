@@ -1,28 +1,27 @@
-import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { SummaryContainer } from '/imports/ui/containers/LatestItemContainer';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.common.white,
-  },
-}));
-
-function SummaryPanel(props) {
-  const classes = useStyles();
-
+function SummaryPanel({
+  classes,
+}) {
   return (
     <Paper
-      className={classNames(classes.root, props.classes.root)}
+      className={classes.root}
       elevation={1}
     >
       <SummaryContainer />
     </Paper>
   );
 }
+
+SummaryPanel.propTypes = {
+  classes: PropTypes.exact({
+    root: PropTypes.string.isRequired,
+  }),
+};
 
 export default SummaryPanel;

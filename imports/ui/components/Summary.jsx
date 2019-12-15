@@ -24,7 +24,6 @@ const styles = () => ({
   labelCell: {
     fontWeight: 600,
   },
-  valueCell: {},
 });
 
 function shouldRefreshTotals(prev, curr, initialized) {
@@ -49,7 +48,7 @@ function Row({ classes, label, value }) {
       </TableCell>
       <TableCell
         align={'right'}
-        className={classNames(classes.cell, classes.valueCell)}
+        className={classes.cell}
       >
         {formatValue(value)}
       </TableCell>
@@ -120,6 +119,12 @@ class Summary extends React.Component {
 }
 
 Summary.propTypes = {
+  classes: PropTypes.exact({
+    root: PropTypes.string.isRequired,
+    column: PropTypes.string.isRequired,
+    cell: PropTypes.string.isRequired,
+    labelCell: PropTypes.string.isRequired,
+  }),
   latestItem: PropTypes.shape({
     balance: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,

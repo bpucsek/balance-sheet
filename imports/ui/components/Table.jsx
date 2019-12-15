@@ -13,8 +13,6 @@ const useStyles = makeStyles(() => ({
   root: {
     position: 'relative',
   },
-  head: {},
-  body: {},
 }));
 
 function Table({
