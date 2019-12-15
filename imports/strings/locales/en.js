@@ -15,7 +15,7 @@ export default {
   "component.Summary.liabilities": "Liabilities Total ($)",
   "component.Summary.netWorth": "Net Worth ($)",
   "component.TableBody.button.add-item": "Add Item",
-  "component.TableBody.empty": "No items found.",
+  "component.TableBody.empty": "Add your first item!",
   "enum.ItemTypeEnum.asset": "Asset",
   "enum.ItemTypeEnum.liability": "Liability",
   "err.balance-too-high": "Balance is too high.",

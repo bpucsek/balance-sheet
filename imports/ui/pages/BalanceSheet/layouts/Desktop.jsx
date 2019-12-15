@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   content: {
+    position: 'relative',
     marginRight: theme.spacing(4),
     marginBottom: theme.spacing(10),
     flexGrow: 1,
@@ -64,11 +65,7 @@ function Desktop(props) {
           <Table { ...props }
             classes={{
               root: classes.table,
-            }}
-            TableHeadProps={{
-              classes: {
-                cell: classes.tableHeadCell,
-              },
+              headCell: classes.tableHeadCell,
             }}
           />
         </div>

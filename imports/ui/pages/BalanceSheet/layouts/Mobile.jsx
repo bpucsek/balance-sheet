@@ -7,7 +7,9 @@ import MobileFooter from '/imports/ui/components/MobileFooter';
 import Table from '/imports/ui/components/Table';
 
 const useStyles = makeStyles(() => ({
-  root: {},
+  root: {
+    position: 'relative',
+  },
   header: {},
   table: {
     marginTop: '48px', // 48px for AppBar
@@ -33,11 +35,7 @@ function Mobile(props) {
       <Table { ...props }
         classes={{
           root: classes.table,
-        }}
-        TableHeadProps={{
-          classes: {
-            cell: classes.tableHeadCell,
-          },
+          headCell: classes.tableHeadCell,
         }}
       />
       <MobileFooter />
