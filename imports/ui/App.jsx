@@ -60,6 +60,9 @@ class App extends React.Component {
     super(props);
 
     this.state = getDevice();
+
+    // Make the app respond to changing screen sizes,
+    // but only have it run when a user is likely finished adjusting their window size.
     this.onResize = _.debounce(this.onResize.bind(this), 250);
   }
 

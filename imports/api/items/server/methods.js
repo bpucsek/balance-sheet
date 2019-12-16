@@ -96,7 +96,7 @@ export const remove = new ValidatedMethod({
     itemId: { type: String },
   }).validator(),
   run({ itemId }) {
-    // Deleted items need to report to the UI in order to trigger a balance sheet refresh.
+    // Items are soft deleted so that they can still be reported to the UI and trigger balance sheet refreshes.
     Item.update({
       _id: itemId,
     }, {
