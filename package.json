@@ -14,7 +14,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "recompose": "^0.30.0",
-    "simpl-schema": "^1.5.6"
+    "simpl-schema": "^1.10.2"
   },
   "meteor": {
     "mainModule": {
